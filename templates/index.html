@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>AI Bots</h2>
+            <table>
+                <tr onclick="selectBot('gpt.png')"><td><img src="{{ url_for('static', filename='icons/gpt.png') }}" alt="GPT"></td><td>GPT</td></tr>
+                <tr onclick="selectBot('claude.png')"><td><img src="{{ url_for('static', filename='icons/claude.png') }}" alt="ClaudeAI"></td><td>ClaudeAI</td></tr>
+                <tr onclick="selectBot('deepseak.png')"><td><img src="{{ url_for('static', filename='icons/deepseak.png') }}" alt="DeepSeek"></td><td>DeepSeek</td></tr>
+                <tr onclick="selectBot('grok.png')"><td><img src="{{ url_for('static', filename='icons/grok.png') }}" alt="GrokAI"></td><td>GrokAI</td></tr>
+                <tr onclick="selectBot('gemini.png')"><td><img src="{{ url_for('static', filename='icons/gemini.png') }}" alt="Gemini"></td><td>Gemini</td></tr>
+                <tr onclick="selectBot('mistral.png')"><td><img src="{{ url_for('static', filename='icons/mistral.png') }}" alt="Mistral"></td><td>Mistral</td></tr>
+            </table>
+        </div>
+
+        <!-- Main Chat Section -->
+        <div class="main">
+            <div class="header">
+                <div id="g_id_onload"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                     data-context="signin"
+                     data-ux_mode="popup"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard"></div>
+            </div>
+            <div class="chat-box" id="chat-box"></div>
+            <div class="input-area">
+                <img id="selected-bot-icon" class="bot-icon" src="" style="display:none;">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
